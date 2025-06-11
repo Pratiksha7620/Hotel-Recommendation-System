@@ -1,0 +1,62 @@
+/* Full-screen background */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('/images/login-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login container */
+.login-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 3em;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    width: 300px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Login form elements */
+.login-form input {
+    width: 100%;
+    padding: 0.7em;
+    margin: 0.8em 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 0.7em;
+    background-color: #F66B0E;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #e65c00;
+}
+
+.signup-link {
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+.signup-link a {
+    color: #F66B0E;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
