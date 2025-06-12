@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>HotelFinder - Navbar</title>
-    <link rel="stylesheet" href="homepage.css"/>
-       
+  <meta charset="UTF-8">
+  <title>Hotel Finder</title>
+  <link rel="stylesheet" href="homepage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">HotelFinder</div>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/hotels">Hotels</a>
-            <a href="/login">Login</a>
-            <a href="/admin">admin</a>
-        </div>
+  <header class="navbar">
+    <div class="navbar-left">
+      <span class="logo">G<span style="color:#27ae60">westy</span></span>
+    </div>
+    <nav class="navbar-center">
+      <a href="#">Home</a>
+      <a href="#">Hotels</a>
+      <a href="#">city</a>
+      <a href="#">amenities</a>
+      <a href="#">Shortcode</a>
+      <a href="#">Extra</a>
     </nav>
+    <div class="navbar-right">
+      <a href="/login">Login</a>
+      <a href="">Register</a>
+      <button class="submit-btn">Submit Hotel</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>&nbsp; Welcome Awaits You....!</h1>
+      <p>Come As a Guest.. Leave As a Friend...!</p>
+
+      <div class="search-box">
+        <input type="text" placeholder="Location">
+        <input type="date" placeholder="Check In">
+        <input type="date" placeholder="Check Out">
+        <select>
+          <option>Rooms</option>
+        </select>
+        <select>
+          <option>Adults</option>
+        </select>
+        <select>
+          <option>Children</option>
+        </select>
+        <button class="search-btn">Search</button>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>

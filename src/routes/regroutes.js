@@ -5,4 +5,7 @@ router.get("/",regCtrl.homepagectrl);
 router.get("/login",regCtrl.login);
 router.get("/signup",regCtrl.signup);
 router.post("/register",regCtrl.regCtrl);
+router.post("/validate",regCtrl.validate);
+// router.post("/admindashboard",regCtrl.admindashboard);
+// router.post("/userdshboard",regCtrl.userdashboard);
 module.exports=router;
