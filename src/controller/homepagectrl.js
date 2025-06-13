@@ -96,7 +96,7 @@ exports.validate = (req, res) => {
       req.session.uid = result[0].userid;
 
       if (type === "admin") {
-        return res.render("admindashboard");
+        return res.render("admindashboard",{name:"no"});
       } else if (type === "guest") {
         return res.render("userdashboard");
       } else {
@@ -106,4 +106,13 @@ exports.validate = (req, res) => {
       return res.render("login", { msg: "Invalid username, password, or role." });
     }
   });
+};
+exports.hotelTab=(req,res)=>{
+  // res.render("hoteltab.ejs");
+  res.render("admindashboard",{name:"hoteltab.ejs"});
+};
+
+exports.addHotels=(req,res)=>{
+  res.render("addhotels.ejs");
+
 };

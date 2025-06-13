@@ -8,4 +8,6 @@ router.post("/register",regCtrl.regCtrl);
 router.post("/validate",regCtrl.validate);
 // router.post("/admindashboard",regCtrl.admindashboard);
 // router.post("/userdshboard",regCtrl.userdashboard);
+router.get("/hoteltab",regCtrl.hotelTab);
+router.get("/addhotels", regCtrl.addHotels);
 module.exports=router;
