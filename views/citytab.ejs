@@ -11,17 +11,17 @@
    <ul class="nav nav-tabs">
 
   <li class="nav-item">
-    <a class="nav-link" href="/hoteltab?show=addhotels" style="margin-left: 100px;font-size: 30px;" >Add Hotels</a>
+    <a class="nav-link" href="/citytab?show=addcity" style="margin-left: 100px;font-size: 30px;" >Add city</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/hoteltab?show=viewhotels" style="margin-left: 900px ;font-size: 30px;">View Hotels</a>
+    <a class="nav-link" href="/citytab?show=viewcity" style="margin-left: 900px ;font-size: 30px;">View city</a>
   </li>
   
 </ul>
-<% if (show === 'addhotels') { %>
-  <%- include('addhotels') %>
-<% }  else if (show === 'viewhotels') { %>
-  <%- include('viewhotels') %>
+<% if (show === 'addcity') { %>
+  <%- include('addcity') %>
+<% }  else if (show === 'viewcity') { %>
+  <%- include('viewcity') %>
 <% } %>
 </body>
 </html>

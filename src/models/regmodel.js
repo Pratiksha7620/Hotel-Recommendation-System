@@ -34,3 +34,36 @@ exports.whologin = (username, password, type, callback) => {
   });
 };
 
+exports.getAllHotels = (callback) => {
+  const sql = "SELECT id, name, city, rating FROM hotelmaster";
+  conn.query(sql, (err, result) => {
+    if (err) return callback(err);
+    callback(null, result);
+  });
+};
+
+exports.getAllcity = (callback) => {
+  const sql = "SELECT id, name, city, rating FROM hotelmaster";
+  conn.query(sql, (err, result) => {
+    if (err) return callback(err);
+    callback(null, result);
+  });
+};
+//cityadded in database model
+// exports.acceptcityData=(city_name,pincode,callback) => {
+//   const sql = "INSERT INTO citymaster VALUES (0, ?, ?)";
+//   console.log(city_name);
+//   console.log(pincode);
+//   conn.query(sql, [city_name,pincode], (err, result) => {
+//     if (err) {
+//       return callback(err, null);
+//     }
+//     return callback(null, "User registered successfully.");
+//   });
+// };
+
+exports.acceptcityData = (...cityData) => {
+  conn.query("insert into citymaster values('0',?,?)",
+    [...cityData]);
+    return true;
+  }

@@ -15,28 +15,29 @@
         <a href="#"><i class="fas fa-home"></i> Dashboard</a>
         <a href="/hoteltab"><i class="fas fa-hotel"></i> Hotels</a>
         <a href="#"><i class="fas fa-swimming-pool"></i> Amenities</a>
-        <a href="#"><i class="fas fa-city"></i> City</a>
+        <a href="citytab"><i class="fas fa-city"></i> City</a>
         <a href="#"><i class="fas fa-map-marker-alt"></i> Area</a>
         <a href="#"><i class="fas fa-comment-dots"></i> Review</a>
-        <a href="#"><i class="fas fa-star"></i> Rating</a>
       </nav>
     </aside>
 
     <!-- Main -->
     <main class="main-content">
       <header class="navbar">
-        <span>Welcome to Admin Dashboard</span>
+        <span><h1>Welcome to Admin Dashboard</h1></span>
         <form action="/logout" method="POST">
           <button class="logout-btn">Logout</button>
         </form>
       </header>
 
-      <section class="dashboard">
-         <% if (name !== "no") { %>
-             <%- include(name) %>
+       <section class="dashboard">
+          <% if (name !== "no") { %>
+             <%- include(name,{show:show}) %>
               <% } %>
 
-      </section>
+      </section> 
+
+     
     </main>
   </div>
 </body>
