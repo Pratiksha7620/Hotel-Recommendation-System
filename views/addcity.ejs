@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add City</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="addcity.css" />
+</head>
+<body>
+  <div class="container">
+
+ <form name="frm" action="/cityadd" method="post" class="styled-form">
+  <h2 class="form-title">Add City</h2>
+
+  <div class="form-group">
+    <label for="city">City Name</label>
+    <input type="text" class="form-control" id="city" name="city_name" placeholder="Enter city">
+  </div>
+
+  <div class="form-group">
+    <label for="pincode">Pincode</label>
+    <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter pincode">
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+</form>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
