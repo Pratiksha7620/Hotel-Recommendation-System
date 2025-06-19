@@ -6,6 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>view hotels</h1>
+    <h3 style="text-align:center;">All Hotels</h3>
+
+<div class="container">
+  <div class="row">
+    <% hotels.forEach(hotel => { %>
+      <div class="col-md-4">
+        <div class="card" style="margin:15px; border:1px solid #ccc; padding:15px; border-radius:10px;">
+          <img src="/uploads/<%= hotel.filename || 'default.png' %>" class="img-responsive" style="max-height:200px; width:100%; object-fit:cover;" alt="Hotel Image" />
+          <h4><%= hotel.hotel_name %></h4>
+          <p><strong>Address:</strong> <%= hotel.hotel_address %></p>
+           <p><strong>Email:</strong> <%= hotel.hotel_email || 'N/A' %></p>
+            <p><strong>Contact:</strong> <%= hotel.hotel_contact || 'N/A' %></p>
+             <p><strong>Rating:</strong> <%= hotel.rating || 'N/A' %> ⭐</p>
+             <p><strong>Reviews:</strong> <%= hotel.reviewcount || 'N/A' %></p>
+              <p><strong>City:</strong> <%= hotel.city_name || 'N/A' %></p>
+               <p><strong>Area:</strong> <%= hotel.area_name || 'N/A' %></p>
+
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
 </body>
 </html>

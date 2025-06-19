@@ -12,12 +12,12 @@
     <aside class="sidebar">
       <h2 class="logo">HotelFinder</h2>
       <nav class="menu">
-        <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
         <a href="/hoteltab"><i class="fas fa-hotel"></i> Hotels</a>
-        <a href="#"><i class="fas fa-swimming-pool"></i> Amenities</a>
-        <a href="citytab"><i class="fas fa-city"></i> City</a>
-        <a href="#"><i class="fas fa-map-marker-alt"></i> Area</a>
-        <a href="#"><i class="fas fa-comment-dots"></i> Review</a>
+        <a href="/amenitiestab"><i class="fas fa-swimming-pool"></i> Amenities</a>
+        <a href="/citytab"><i class="fas fa-city"></i> City</a>
+        <a href="/areatab"><i class="fas fa-map-marker-alt"></i> Area</a>
+        <a href="/reviewtab"><i class="fas fa-comment-dots"></i> Review</a>
       </nav>
     </aside>
 
@@ -32,12 +32,11 @@
 
        <section class="dashboard">
           <% if (name !== "no") { %>
-             <%- include(name,{show:show}) %>
+             <%- include(name,{show:show},) %>
               <% } %>
 
       </section> 
 
-     
     </main>
   </div>
 </body>

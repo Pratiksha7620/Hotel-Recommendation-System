@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Amenities</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="addcity.css" />
+</head>
+<body>
+  <div class="container">
+
+ <form name="frm" action="/areaadd" method="post" class="styled-form">
+  <h2 class="form-title">Add area</h2>
+  <div class="form-group">
+    <label for="city">Area Name</label>
+    <input type="text" class="form-control" id="amenity" name="area_name" placeholder="Enter area">
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+</form>
+<%=msg%>
+</div>
+</body>
+</html>
