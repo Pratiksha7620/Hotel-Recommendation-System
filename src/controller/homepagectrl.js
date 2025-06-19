@@ -299,13 +299,13 @@ let rev_id=parseInt(req.query.rev_id.trim());
  }
 };
 
-exports.cityareajoinpage=(req,res)=>{
- let city_id=req.params.city_id;
- let result=regmodel.fetchareacity(city_id);
- result.then((data)=>{
-  res.json(data);
- })
-};
+// exports.cityareajoinpage=(req,res)=>{
+//  let city_id=req.params.city_id;
+//  let result=regmodel.fetchareacity(city_id);
+//  result.then((data)=>{
+//   res.json(data);
+//  })
+// };
 exports.Addhotel = (req, res) => {
   // Load both cities and areas
   Promise.all([regmodel.showcities(), regmodel.getarea()])
@@ -400,18 +400,24 @@ function showHotelFormSuccess(res, msg) {
       });
     });
 };
-exports.viewHotelPage=(req,res)=>{
-  let result=regmodel.getAllHotelsWithImage();
-  result.then(hotels=>{
-    res.render("admindashboard",{
-      name:"viewhotels.ejs",
-      show:"viewhotels",
+exports.viewHotelPage = (req, res) => {
+  let result = regmodel.getAllHotelsWithImage();
+
+  result.then(hotels => {
+    console.log("✅ Hotels result:", hotels[0]); // See first hotel
+    res.render("admindashboard", {
+      name: "viewhotels.ejs",
+      show: "viewhotels",
       hotels
     });
-  })
-  result.catch(err=>{
-    console.log("Error loading hotel list:",err);
-    res.send("Error loading hotel list");
   });
 
+  result.catch(err => {
+    console.log("Error loading hotel list:", err);
+    res.send("Error loading hotel list");
+  });
+};
+
+exports.logoutadmin=(req,res)=>{
+  res.render("login.ejs",{msg:""});
 };
