@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Hotel Finder</title>
-  <link rel="stylesheet" href="homepage.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+   <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
 
@@ -15,40 +16,93 @@
     <nav class="navbar-center">
       <a href="#">Home</a>
       <a href="#">Hotels</a>
-      <a href="#">city</a>
-      <a href="#">amenities</a>
+      <a href="#">City</a>
+      <a href="#">Amenities</a>
       <a href="#">Shortcode</a>
       <a href="#">Extra</a>
     </nav>
     <div class="navbar-right">
       <a href="/login">Login</a>
-      <a href="">Register</a>
+      <a href="/signup">Register</a>
       <button class="submit-btn">Submit Hotel</button>
     </div>
   </header>
 
   <section class="hero">
+    <div class="overlay"></div>
     <div class="hero-content">
-      <h1>&nbsp; Welcome Awaits You....!</h1>
+      <h1>Welcome Awaits You....!</h1>
       <p>Come As a Guest.. Leave As a Friend...!</p>
 
       <div class="search-box">
         <input type="text" placeholder="Location">
-        <input type="date" placeholder="Check In">
-        <input type="date" placeholder="Check Out">
-        <select>
-          <option>Rooms</option>
-        </select>
-        <select>
-          <option>Adults</option>
-        </select>
-        <select>
-          <option>Children</option>
-        </select>
+        <input type="date">
+        <input type="date">
+        <select><option>Rooms</option></select>
+        <select><option>Adults</option></select>
+        <select><option>Children</option></select>
         <button class="search-btn">Search</button>
       </div>
     </div>
   </section>
+
+  <section class="features">
+    <h2>Top Rated Hotels</h2>
+    <div class="card-container">
+      <div class="card">
+      <img src="/images/hotel1.jpg" alt="Hotel">
+        <h3>Royal Stay</h3>
+        <p>Luxurious rooms with sea view</p>
+      </div>
+      <div class="card">
+         <img src="/images/hotel2.jpg" alt="Hotel">
+        <h3>Mountain Resort</h3>
+        <p>Nature and peace in one place</p>
+      </div>
+      <div class="card">
+        <img src="/images/hotel3.jpg" alt="Hotel">
+        <h3>Elite Villa</h3>
+        <p>Comfort and privacy like home</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <h3>Gwesty</h3>
+      <p>Discover the best places to stay, eat, and explore. Your next unforgettable trip starts here!</p>
+    </div>
+    <div class="footer-section links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Hotels</a></li>
+        <li><a href="#">Cities</a></li>
+        <li><a href="#">Amenities</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h4>Contact Us</h4>
+      <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+      <p><i class="fas fa-envelope"></i> support@gwesty.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</p>
+    </div>
+    <div class="footer-section social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Gwesty. All rights reserved.
+  </div>
+</footer>
+
 
 </body>
 </html>

@@ -297,15 +297,32 @@ exports.saveHotelImage=(filename,hotel_id)=>{
   })
 };
 
-exports.getAllHotelsWithImage=()=>{
-  return new Promise((resolve,reject)=>{
-    conn.query("SELECT h.hotel_id, h.hotel_name,h.hotel_address, h.hotel_email,h.hotel_contact, h.rating, h.reviewcount,c.city_name, a.area_name,i.filename FROM hotelmaster h LEFT JOIN citymaster c ON h.city_id = c.city_id LEFT JOIN areamaster a ON h.area_id = a.area_id LEFT JOIN hotelpicjoin i ON h.hotel_id = i.hotel_id",(err,result)=>{
-      if(err){
-        reject(err);
-      }
-      else{
+exports.getAllHotelsWithImage = () => {
+  console.log("✅ getAllHotelsWithImage RUNNING..."); // Add this
+  return new Promise((resolve, reject) => {
+    const sql = `
+      SELECT 
+        h.hotel_id,
+        h.hotel_name,
+        h.hotel_address,
+        h.hotel_email,
+        h.hotel_contact,
+        h.rating,
+        h.reviewcount,
+        c.city_name,
+        a.area_name,
+        i.filename
+      FROM hotelmaster h
+      LEFT JOIN citymaster c ON h.city_id = c.city_id
+      LEFT JOIN areamaster a ON h.area_id = a.area_id
+      LEFT JOIN hotelpicjoin i ON h.hotel_id = i.hotel_id
+    `;
+    conn.query(sql, (err, result) => {
+      if (err) reject(err);
+      else {
+        console.log("✅ Query result sample:", result[0]); // print one row
         resolve(result);
       }
-    })
-  })
+    });
+  });
 };
