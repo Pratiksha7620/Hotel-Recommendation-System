@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Add Hotel</title>
+  <link rel="stylesheet" href="/addhotel.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
 </head>
 <body>
-     <h1>Adding hotels</h1> 
+  <div class="container" style="max-width: 700px; margin: auto; padding: 40px 30px; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+  <h2 style="text-align:center; margin-bottom: 30px; color: #333;">Add Hotel Details</h2>
+  
+  <form action="/hotelform" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="hotel_name">Hotel Name</label>
+      <input type="text" class="form-control" name="hotel_name" placeholder="Enter hotel name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="hotel_address">Hotel Address</label>
+      <input type="text" class="form-control" name="hotel_address" placeholder="Enter address">
+    </div>
+
+    <div class="form-group">
+      <label for="hotel_email">Hotel Email</label>
+      <input type="email" class="form-control" name="hotel_email" placeholder="Enter email">
+    </div>
+
+    <div class="form-group">
+      <label for="hotel_contact">Hotel Contact</label>
+      <input type="text" class="form-control" name="hotel_contact" placeholder="Enter contact number">
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input type="number" step="0.1" class="form-control" name="rating" placeholder="Enter rating (e.g., 4.5)">
+    </div>
+
+    <div class="form-group">
+      <label for="reviewcount">Review Count</label>
+      <input type="number" class="form-control" name="reviewcount" placeholder="Enter number of reviews">
+    </div>
+
+    <div class="form-group">
+      <label for="city_id">City</label>
+      <select class="form-control" name="city_id" required>
+  <option value="">-- Select City --</option>
+  <% cities.forEach(city => { %>
+    <option value="<%= city.city_id %>"><%= city.city_name %></option>
+  <% }); %>
+</select>
+    </div>
+
+    <div class="form-group">
+      <label for="area_id">Area</label>
+      <select class="form-control" name="area_id" required>
+  <option value="">-- Select Area --</option>
+  <% areas.forEach(area => { %>
+    <option value="<%= area.area_id %>"><%= area.area_name %></option>
+  <% }); %>
+</select>
+    </div>
+
+   <div class="form-group">
+    <label for="hotel_image">Upload Image</label>
+    <input type="file" name="hotel_image" id="hotel_image" class="form-control" />
+  </div>
+
+
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary btn-block" style="padding: 10px 20px; border-radius: 5px;">Add Hotel</button>
+    </div>
+  </form>
+</div>
 </body>
 </html>
