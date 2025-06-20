@@ -361,3 +361,23 @@ exports.getAllHotelImages = () => {
     });
   });
 };
+
+exports.viewHotelsToUser=()=>{
+ return new Promise((resolve, reject) => {
+    const sql = `
+      select hotel_name, hotel_address, hotel_email, hotel_contact, rating, 
+      reviewcount, city_name, area_name, filename from 
+      hotelmaster h join hotelpicjoin hp join citymaster c join areamaster a 
+      on h.hotel_id = hp.hotel_id and h.city_id = c.city_id and h.area_id = a.area_id`;
+
+    conn.query(sql, (err, result) => {
+      if (err) {
+        console.error("❌ SQL Error:", err);
+        reject(err);
+      } else {
+        console.log("✅ Sample Result:", result);
+        resolve(result);
+      }
+    });
+  }); 
+};

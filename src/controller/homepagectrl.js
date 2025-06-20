@@ -462,6 +462,13 @@ exports.bookingTab=(req,res)=>{
 exports.logOutUser=(req,res)=>{
   res.render("login.ejs",{msg:""});
 }
-exports.viewHotelToUser=(req,res)=>{
-  res.render("viewhotels.ejs",{hotels: hotels});
+exports.viewHotelToUser=async (req, res) => {
+  console.log("inside view hotel page");
+  
+  try {
+    const hotels = await regmodel.viewHotelsToUser();
+    res.render("viewhotelstouser.ejs", { hotels: hotels});
+  } catch (err) {
+    res.json({ Error: err });
+  }
 };
