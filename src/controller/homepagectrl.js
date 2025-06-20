@@ -400,24 +400,40 @@ function showHotelFormSuccess(res, msg) {
       });
     });
 };
-exports.viewHotelPage = (req, res) => {
-  let result = regmodel.getAllHotelsWithImage();
+// exports.viewHotelPage = (req, res) => {
+//   let result = regmodel.getAllHotelsWithImage();
 
-  result.then(hotels => {
-    console.log("✅ Hotels result:", hotels[0]); // See first hotel
+//   result.then(hotels => {
+//     console.log("✅ Hotels result:", hotels[0]); // See first hotel
+//     res.render("admindashboard", {
+//       name: "viewhotels.ejs",
+//       show: "viewhotels",
+//       hotels
+//     });
+//   });
+
+//   result.catch(err => {
+//     console.log("Error loading hotel list:", err);
+//     res.send("Error loading hotel list");
+//   });
+// };
+
+// exports.logoutadmin=(req,res)=>{
+//   res.render("login.ejs",{msg:""});
+// };
+
+exports.viewHotelPage = async (req, res) => {
+  try {
+    const hotels = await regmodel.getAllHotelsWithImage();
+    console.log("✅ Hotels result sample:", hotels[0]); // Debug
+
     res.render("admindashboard", {
       name: "viewhotels.ejs",
       show: "viewhotels",
       hotels
     });
-  });
-
-  result.catch(err => {
-    console.log("Error loading hotel list:", err);
+  } catch (err) {
+    console.log("❌ Error loading hotel list:", err);
     res.send("Error loading hotel list");
-  });
-};
-
-exports.logoutadmin=(req,res)=>{
-  res.render("login.ejs",{msg:""});
+  }
 };

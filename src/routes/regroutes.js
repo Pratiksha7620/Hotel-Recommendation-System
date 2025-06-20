@@ -46,8 +46,9 @@ router.get("/gethotel",regCtrl.Addhotel);
 // router.get("/getarea",regCtrl.area);
 router.post("/hotelform", upload.single("hotel_image"), regCtrl.hotelFormPage);
 // router.get("/addhotel", regCtrl.loadAddHotelForm);
+// console.log("viewHotelPage type:", typeof regCtrl.viewHotelPage);
 
 router.get("/viewhotels",regCtrl.viewHotelPage);
 
-router.post("/logout",regCtrl.logoutadmin);
+//router.post("/logout",regCtrl.logoutadmin);
 module.exports=router;
