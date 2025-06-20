@@ -85,3 +85,10 @@ body {
 .dashboard p {
   color: #333;
 }
+.logo-img {
+  width: 80px;
+  margin-left: 50px;
+  display: block;
+  border-radius: 10px;
+  width:100px;
+}

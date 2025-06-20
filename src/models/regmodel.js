@@ -272,7 +272,7 @@ exports.accepthotelformdata = (...allHotelData) => {
     const sql = `INSERT INTO hotelmaster 
       (hotel_name, hotel_address, hotel_email, hotel_contact, rating, reviewcount, city_id, area_id) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-    conn.query(sql, allHotelData, (err, result) => {
+    conn.query(sql, [...allHotelData], (err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -283,18 +283,14 @@ exports.accepthotelformdata = (...allHotelData) => {
   });
 };
 
-exports.saveHotelImage=(filename,hotel_id)=>{
-  return new Promise((resolve,reject)=>{
-    conn.query("insert into hotelpicjoin (filename,hotel_id)values(?,?)",[filename,hotel_id],(err,result)=>{
-      if(err){
-        reject(err);
-      }
-      else{
-        console.log("hotel image saved:",result);
-        resolve(result);
-      }
-    })
-  })
+exports.saveHotelImage = (filename, hotel_id) => {
+  return new Promise((resolve, reject) => {
+    const sql = "INSERT INTO hotelpicjoin (filename, hotel_id) VALUES (?, ?)";
+    conn.query(sql, [filename, hotel_id], (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
+  });
 };
 
 // exports.getAllHotelsWithImage = () => {
@@ -336,21 +332,22 @@ exports.getAllHotelsWithImage = () => {
   return new Promise((resolve, reject) => {
     const sql = `
       SELECT 
-        h.hotel_id AS hotel_id,
-        h.hotel_name AS hotel_name,
-        h.hotel_address AS hotel_address,
+        h.hotel_id,
+        h.hotel_name,
+        h.hotel_address,
         COALESCE(h.hotel_email, 'N/A') AS hotel_email,
         COALESCE(h.hotel_contact, 'N/A') AS hotel_contact,
         COALESCE(h.rating, 'N/A') AS rating,
         COALESCE(h.reviewcount, 'N/A') AS reviewcount,
         COALESCE(c.city_name, 'N/A') AS city_name,
         COALESCE(a.area_name, 'N/A') AS area_name,
-        (
-          SELECT i.filename 
-          FROM hotelpicjoin i 
-          WHERE i.hotel_id = h.hotel_id 
+        COALESCE((
+          SELECT i.filename
+          FROM hotelpicjoin i
+          WHERE i.hotel_id = h.hotel_id
+          ORDER BY i.filename DESC
           LIMIT 1
-        ) AS filename
+        ), 'default.png') AS filename
       FROM hotelmaster h
       LEFT JOIN citymaster c ON h.city_id = c.city_id
       LEFT JOIN areamaster a ON h.area_id = a.area_id
@@ -362,6 +359,20 @@ exports.getAllHotelsWithImage = () => {
         reject(err);
       } else {
         console.log("✅ Sample Result:", result[0]);
+        resolve(result);
+      }
+    });
+  });
+};
+
+exports.getAllHotelImages = () => {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM hotelpicjoin";
+    conn.query(sql, (err, result) => {
+      if (err) {
+        console.error("❌ SQL Error:", err);
+        reject(err);
+      } else {
         resolve(result);
       }
     });

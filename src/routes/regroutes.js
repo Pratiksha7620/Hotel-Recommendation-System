@@ -1,6 +1,17 @@
 let routes=require("express");
 let regCtrl=require("../controller/homepagectrl");
 let router=routes.Router();
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/"); 
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "_" + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
 router.get("/",regCtrl.homepagectrl);
 router.get("/login",regCtrl.login);
 router.get("/signup",regCtrl.signup);
@@ -34,21 +45,16 @@ router.post("/reviewadd",regCtrl.reviewAddPage);
 router.get("/showreview",regCtrl.showReviewPage);
 router.get("/deletereview",regCtrl.deleteReview);
 
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => cb(null, Date.now() + "_" + file.originalname)
-});
-const upload = multer({ storage });
+
 
 //router.get("/getareas/:cityid",regCtrl.cityareajoinpage);
 router.get("/gethotel",regCtrl.Addhotel);
-// router.get("/getarea",regCtrl.area);
-router.post("/hotelform", upload.single("hotel_image"), regCtrl.hotelFormPage);
+router.post('/addhotel', upload.single('image'), regCtrl.hotelFormPage);
+
 // router.get("/addhotel", regCtrl.loadAddHotelForm);
 // console.log("viewHotelPage type:", typeof regCtrl.viewHotelPage);
 
 router.get("/viewhotels",regCtrl.viewHotelPage);
 
-//router.post("/logout",regCtrl.logoutadmin);
+router.post("/logout",regCtrl.logoutadmin);
 module.exports=router;

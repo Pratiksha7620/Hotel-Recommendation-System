@@ -4,6 +4,7 @@ let cookieParser = require("cookie-parser");
 let session = require("express-session");
 let router = require("../src/routes/regroutes.js");
 let app = express();
+app.use('/uploads', express.static('uploads'));
 
 // ✅ Ensure 'uploads' folder exists
 const fs = require("fs");
@@ -25,7 +26,7 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.use("/uploads", express.static("uploads"));
+
 app.use("/", router);
 
 module.exports = app;

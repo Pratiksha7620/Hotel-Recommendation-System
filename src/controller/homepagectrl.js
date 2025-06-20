@@ -46,7 +46,7 @@ exports.validate = (req, res) => {
 };
 //hoteltab controller
 exports.hotelTab = (req, res) => {
-  const show = req.query.show || "";
+  const show = req.query.show || "none";
     const cities = req.query.cities || "";
   if (show === "viewhotels") {
     // Example: get hotels from DB
@@ -61,47 +61,6 @@ exports.hotelTab = (req, res) => {
     res.render("admindashboard", { name: "hoteltab.ejs", show,cities });
   }
 };
-
-// exports.hotelTab = (req, res) => {
-//   const show = req.query.show || "";
-
-//   if (show === "viewhotels") {
-//     regmodel.getAllHotels((err, hotels) => {
-//       if (err) {
-//         console.error("Error fetching hotels:", err);
-//         return res.render("admindashboard", {
-//           name: "hoteltab.ejs",
-//           show,
-//           hotels: [],
-//           cities: []
-//         });
-//       }
-//       res.render("admindashboard", {
-//         name: "hoteltab.ejs",
-//         show,
-//         hotels,
-//         cities: []
-//       });
-//     });
-//   } else {
-//     regmodel.fetchCities().then((cities) => {
-//       res.render("admindashboard", {
-//         name: "hoteltab.ejs",
-//         show,
-//         cities,
-//         hotels: [] // provide empty list to avoid undefined in viewhotels
-//       });
-//     }).catch((err) => {
-//       console.error("Error fetching cities:", err);
-//       res.render("admindashboard", {
-//         name: "hoteltab.ejs",
-//         show,
-//         cities: [],
-//         hotels: []
-//       });
-//     });
-//   }
-// };
 
 //citytab controller
 exports.cityTab=(req,res)=>{
@@ -120,11 +79,8 @@ exports.cityTab=(req,res)=>{
   }
 };
 exports.addcityPage= (req, res) => {
-  res.render("addcity.ejs",{msg:""});
+  res.render("admindashboard",{name:"citytab.ejs",show:"addcity.ejs",msg:""});
 };
-
-
-
 
 exports.cityAddPage=(req,res)=>{
     let{city_name,pincode}=req.body;
@@ -139,7 +95,7 @@ exports.cityAddPage=(req,res)=>{
 exports.showCityPage=(req,res)=>{
   let result=regmodel.getAllcityPage();
   result.then((data)=>{
-    res.render("viewcity.ejs",{data :data})
+   res.render("admindashboard",{name:"citytab.ejs",data:data,show:"viewcity.ejs",msg:""});
     // res.render("viewcity.ejs",data);
   });
 };
@@ -203,7 +159,7 @@ exports.deleteAmenities=async(req,res)=>{
 };
 //area tab controller that is addarea viewarea 
 exports.areaTab=(req,res)=>{
- const show = req.query.show || "";
+ const show = req.query.show || "none";
   if (show === "viewarea") {
     // Example: get hotels from DB
     regmodel.getAllarea((err, hotels) => {
@@ -219,7 +175,7 @@ exports.areaTab=(req,res)=>{
 };
 //create addareaform page controller
 exports.addAreaPage=(req,res)=>{
-  res.render("addarea.ejs",{msg:""});
+ res.render("admindashboard",{name:"areatab.ejs",show:"addarea.ejs",msg:""});
 };
 //area add in database page controller
 exports.areaAddPage=(req,res)=>{
@@ -233,7 +189,7 @@ exports.areaAddPage=(req,res)=>{
 exports.showAreaPage=(req,res)=>{
   let result=regmodel.getAllArea();
    result.then((data)=>{
-    res.render("viewarea.ejs",{data :data})
+   res.render("admindashboard",{name:"areatab.ejs",data:data,show:"viewarea.ejs",msg:""})
   });
 };
 //area delete controller
@@ -251,7 +207,7 @@ exports.deleteArea=async(req,res)=>{
 };
 //reviewtab controller means addreview and viewreviewtab
 exports.reviewTab=(req,res)=>{
-  const show = req.query.show || "";
+  const show = req.query.show || "none";
   if (show === "viewreview") {
     // Example: get hotels from DB
     regmodel.getAllreview((err, hotels) => {
@@ -267,7 +223,7 @@ exports.reviewTab=(req,res)=>{
 };
 //add review form controller
 exports.addReviewPage=(req,res)=>{
-  res.render("addreview.ejs",{msg:""});
+ res.render("admindashboard",{name:"reviewtab.ejs",show:"addreview.ejs",msg:""});
 };
 //add data in database controller
 exports.reviewAddPage=(req,res)=>{
@@ -418,13 +374,13 @@ function showHotelFormSuccess(res, msg) {
 //   });
 // };
 
-// exports.logoutadmin=(req,res)=>{
-//   res.render("login.ejs",{msg:""});
-// };
+exports.logoutadmin=(req,res)=>{
+  res.render("login.ejs",{msg:""});
+};
 
 exports.viewHotelPage = async (req, res) => {
   try {
-    const hotels = await regmodel.getAllHotelsWithImage();
+    const hotels = await regmodel.getAllHotelImages();
     console.log("✅ Hotels result sample:", hotels[0]); // Debug
 
     res.render("admindashboard", {
