@@ -44,17 +44,15 @@ router.get("/addreview",regCtrl.addReviewPage);
 router.post("/reviewadd",regCtrl.reviewAddPage);
 router.get("/showreview",regCtrl.showReviewPage);
 router.get("/deletereview",regCtrl.deleteReview);
-
-
-
-//router.get("/getareas/:cityid",regCtrl.cityareajoinpage);
 router.get("/gethotel",regCtrl.Addhotel);
 router.post('/addhotel', upload.single('image'), regCtrl.hotelFormPage);
-
-// router.get("/addhotel", regCtrl.loadAddHotelForm);
-// console.log("viewHotelPage type:", typeof regCtrl.viewHotelPage);
-
 router.get("/viewhotels",regCtrl.viewHotelPage);
 
 router.post("/logout",regCtrl.logoutadmin);
+
+
+//user dashboard
+router.get("/bookingstab",regCtrl.bookingTab);
+router.get("/viewhoteltouser",regCtrl.viewHotelToUser);
+router.get("/logoutuser",regCtrl.logOutUser);
 module.exports=router;

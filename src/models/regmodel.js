@@ -331,34 +331,17 @@ exports.saveHotelImage = (filename, hotel_id) => {
 exports.getAllHotelsWithImage = () => {
   return new Promise((resolve, reject) => {
     const sql = `
-      SELECT 
-        h.hotel_id,
-        h.hotel_name,
-        h.hotel_address,
-        COALESCE(h.hotel_email, 'N/A') AS hotel_email,
-        COALESCE(h.hotel_contact, 'N/A') AS hotel_contact,
-        COALESCE(h.rating, 'N/A') AS rating,
-        COALESCE(h.reviewcount, 'N/A') AS reviewcount,
-        COALESCE(c.city_name, 'N/A') AS city_name,
-        COALESCE(a.area_name, 'N/A') AS area_name,
-        COALESCE((
-          SELECT i.filename
-          FROM hotelpicjoin i
-          WHERE i.hotel_id = h.hotel_id
-          ORDER BY i.filename DESC
-          LIMIT 1
-        ), 'default.png') AS filename
-      FROM hotelmaster h
-      LEFT JOIN citymaster c ON h.city_id = c.city_id
-      LEFT JOIN areamaster a ON h.area_id = a.area_id
-    `;
+      select hotel_name, hotel_address, hotel_email, hotel_contact, rating, 
+      reviewcount, city_name, area_name, filename from 
+      hotelmaster h join hotelpicjoin hp join citymaster c join areamaster a 
+      on h.hotel_id = hp.hotel_id and h.city_id = c.city_id and h.area_id = a.area_id`;
 
     conn.query(sql, (err, result) => {
       if (err) {
         console.error("❌ SQL Error:", err);
         reject(err);
       } else {
-        console.log("✅ Sample Result:", result[0]);
+        console.log("✅ Sample Result:", result);
         resolve(result);
       }
     });
