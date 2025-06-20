@@ -54,5 +54,6 @@ router.post("/logout",regCtrl.logoutadmin);
 //user dashboard
 router.get("/bookingstab",regCtrl.bookingTab);
 router.get("/viewhoteltouser",regCtrl.viewHotelToUser);
+
 router.get("/logoutuser",regCtrl.logOutUser);
 module.exports=router;
