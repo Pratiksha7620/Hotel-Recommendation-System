@@ -14,15 +14,11 @@
     <a class="nav-link" href="/gethotel" style="margin-left: 100px;font-size: 30px;" >Add Hotels</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/hoteltab?show=viewhotels" style="margin-left: 900px ;font-size: 30px;">View Hotels</a>
+    <a class="nav-link" href="/viewhotels" style="margin-left: 900px ;font-size: 30px;">View Hotels</a>
   </li>
   
 </ul>
-<% if (show === 'addhotels') { %>
-  <%- include('addhotels') %>
-<% }  else if (show === 'viewhotels') { %>
-  <%- include('viewhotels') %>
-<% } %>
+
 
 </body>
 </html>

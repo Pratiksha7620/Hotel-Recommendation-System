@@ -18,10 +18,11 @@
   </li>
   
 </ul>
-<% if (show === 'addcity') { %>
-  <%- include('addcity') %>
-<% }  else if (show === 'viewcity') { %>
-  <%- include('viewcity') %>
-<% } %>
+<%if(show!=="none")
+{
+    %>
+        <%-include(show)%>
+    <%
+}%>
 </body>
 </html>

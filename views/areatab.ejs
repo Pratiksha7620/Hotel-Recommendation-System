@@ -18,10 +18,11 @@
   </li>
   
 </ul>
-<% if (show === 'addarea') { %>
-  <%- include('addarea') %>
-<% }  else if (show === 'viewarea') { %>
-  <%- include('viewarea') %>
-<% } %>
+<%if(show!=="none")
+{
+    %>
+        <%-include(show)%>
+    <%
+}%>
 </body>
 </html>

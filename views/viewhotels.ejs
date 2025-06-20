@@ -1,34 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Hotels</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .hotel-section {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .hotel-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card img {
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      height: 180px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .card-body {
+      text-align: left;
+      padding: 15px 20px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .card-info p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-    <h3 style="text-align:center;">All Hotels</h3>
 
-<div class="container">
-  <div class="row">
-    <% hotels.forEach(hotel => { %>
-      <div class="col-md-4">
-        <div class="card" style="margin:15px; border:1px solid #ccc; padding:15px; border-radius:10px;">
-          <img src="/uploads/<%= hotel.filename || 'default.png' %>" class="img-responsive" style="max-height:200px; width:100%; object-fit:cover;" alt="Hotel Image" />
-          <h4><%= hotel.hotel_name %></h4>
-          <p><strong>Address:</strong> <%= hotel.hotel_address %></p>
-           <p><strong>Email:</strong> <%= hotel.hotel_email || 'N/A' %></p>
-            <p><strong>Contact:</strong> <%= hotel.hotel_contact || 'N/A' %></p>
-             <p><strong>Rating:</strong> <%= hotel.rating || 'N/A' %> ⭐</p>
-             <p><strong>Reviews:</strong> <%= hotel.reviewcount || 'N/A' %></p>
-              <p><strong>City:</strong> <%= hotel.city_name || 'N/A' %></p>
-               <p><strong>Area:</strong> <%= hotel.area_name || 'N/A' %></p>
-  <pre><%= JSON.stringify(hotel, null, 2) %></pre>
-
-        </div>
+  <section class="hotel-section">
+    <h2 class="hotel-title">All Hotels</h2>
+    <div class="container">
+      <div class="row g-4">
+        <% hotels.forEach(hotel => { %>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card">
+              <img
+                src="/uploads/<%= encodeURIComponent(hotel.filename || '') %>"
+                onerror="this.onerror=null; this.src='/images/default.png';"
+                alt="Hotel Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title"><%= hotel.hotel_name || 'N/A' %></h5>
+                <div class="card-info">
+                  <p><strong>Address:</strong> <%= hotel.hotel_address || 'N/A' %></p>
+                  <p><strong>Email:</strong> <%= hotel.hotel_email || 'N/A' %></p>
+                  <p><strong>Contact:</strong> <%= hotel.hotel_contact || 'N/A' %></p>
+                  <p><strong>Rating:</strong> <%= hotel.rating || 'N/A' %> ⭐</p>
+                  <p><strong>Reviews:</strong> <%= hotel.reviewcount || 'N/A' %></p>
+                  <p><strong>City:</strong> <%= hotel.city_name || 'N/A' %></p>
+                  <p><strong>Area:</strong> <%= hotel.area_name || 'N/A' %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
       </div>
-    <% }) %>
-  </div>
-</div>
+    </div>
+  </section>
 
 </body>
 </html>

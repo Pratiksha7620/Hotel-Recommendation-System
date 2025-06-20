@@ -18,10 +18,11 @@
   </li>
   
 </ul>
-<% if (show === 'addreview') { %>
-  <%- include('addreview') %>
-<% }  else if (show === 'viewreview') { %>
-  <%- include('viewreview') %>
-<% } %>
+<%if(show!=="none")
+{
+    %>
+        <%-include(show)%>
+    <%
+}%>
 </body>
 </html>
