@@ -297,30 +297,71 @@ exports.saveHotelImage=(filename,hotel_id)=>{
   })
 };
 
+// exports.getAllHotelsWithImage = () => {
+//   console.log("✅ getAllHotelsWithImage RUNNING..."); // Add this
+//   return new Promise((resolve, reject) => {
+//     const sql = `
+//      SELECT 
+//   h.hotel_id,
+//   h.hotel_name,
+//   h.hotel_address,
+//   h.hotel_email,
+//   h.hotel_contact,
+//   h.rating,
+//   h.reviewcount,
+//   c.city_name,
+//   a.area_name,
+//   (
+//     SELECT i.filename 
+//     FROM hotelpicjoin i 
+//     WHERE i.hotel_id = h.hotel_id 
+//     LIMIT 1
+//   ) AS filename
+// FROM hotelmaster h
+// LEFT JOIN citymaster c ON h.city_id = c.city_id
+// LEFT JOIN areamaster a ON h.area_id = a.area_id
+
+//     `;
+//     conn.query(sql, (err, result) => {
+//       if (err) reject(err);
+//       else {
+//         console.log("✅ Query result sample:", result[0]); // print one row
+//         resolve(result);
+//       }
+//     });
+//   });
+// };
+
 exports.getAllHotelsWithImage = () => {
-  console.log("✅ getAllHotelsWithImage RUNNING..."); // Add this
   return new Promise((resolve, reject) => {
     const sql = `
       SELECT 
-        h.hotel_id,
-        h.hotel_name,
-        h.hotel_address,
-        h.hotel_email,
-        h.hotel_contact,
-        h.rating,
-        h.reviewcount,
-        c.city_name,
-        a.area_name,
-        i.filename
+        h.hotel_id AS hotel_id,
+        h.hotel_name AS hotel_name,
+        h.hotel_address AS hotel_address,
+        COALESCE(h.hotel_email, 'N/A') AS hotel_email,
+        COALESCE(h.hotel_contact, 'N/A') AS hotel_contact,
+        COALESCE(h.rating, 'N/A') AS rating,
+        COALESCE(h.reviewcount, 'N/A') AS reviewcount,
+        COALESCE(c.city_name, 'N/A') AS city_name,
+        COALESCE(a.area_name, 'N/A') AS area_name,
+        (
+          SELECT i.filename 
+          FROM hotelpicjoin i 
+          WHERE i.hotel_id = h.hotel_id 
+          LIMIT 1
+        ) AS filename
       FROM hotelmaster h
       LEFT JOIN citymaster c ON h.city_id = c.city_id
       LEFT JOIN areamaster a ON h.area_id = a.area_id
-      LEFT JOIN hotelpicjoin i ON h.hotel_id = i.hotel_id
     `;
+
     conn.query(sql, (err, result) => {
-      if (err) reject(err);
-      else {
-        console.log("✅ Query result sample:", result[0]); // print one row
+      if (err) {
+        console.error("❌ SQL Error:", err);
+        reject(err);
+      } else {
+        console.log("✅ Sample Result:", result[0]);
         resolve(result);
       }
     });
